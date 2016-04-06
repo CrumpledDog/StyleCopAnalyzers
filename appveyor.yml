@@ -7,7 +7,11 @@ install:
 before_build:
 - nuget restore
 
-build_script:
+build:
+  project: StyleCopAnalyzers.sln
+  verbosity: minimal
+
+after_build:
 - ps: >-
     cd build
 
