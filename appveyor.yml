@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 1.0.1-alpha-{build}
 os: Visual Studio 2015
 init:
 - git config --global core.autocrlf true
@@ -6,9 +6,13 @@ install:
 - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
 before_build:
 - nuget restore
-build:
-  project: StyleCopAnalyzers.sln
-  verbosity: minimal
+
+build_script:
+- ps: >-
+  cd build
+  
+  .\build.ps1
+
 test_script:
 - .\packages\OpenCover.4.6.247-rc\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\stylecopanalyzers\StyleCop.Analyzers\StyleCop.Analyzers.Test\bin\Debug\StyleCop.Analyzers.Test.dll -noshadow -appveyor" -returntargetcode -filter:"+[StyleCop*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\StyleCopAnalyzers_coverage.xml
 - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
@@ -17,3 +21,6 @@ test_script:
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
   - packages -> **\packages.config
+
+artifacts:
+  - path: build\nuget\*.nupkg
