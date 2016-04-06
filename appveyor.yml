@@ -17,6 +17,7 @@ assembly_info:
 build:
   project: StyleCopAnalyzers.sln
   verbosity: minimal
+  configuration: Debug
 
 after_build:
 - ps: >-
