@@ -7,6 +7,13 @@ install:
 before_build:
 - nuget restore
 
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: 1.0.1.{build}
+  assembly_file_version: 1.0.1.{build}
+  assembly_informational_version: 1.0.1-alpha-{build}
+
 build:
   project: StyleCopAnalyzers.sln
   verbosity: minimal
