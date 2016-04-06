@@ -14,10 +14,12 @@ assembly_info:
   assembly_file_version: 1.0.1.{build}
   assembly_informational_version: 1.0.1-alpha-{build}
 
+configuration:
+  - Debug
+
 build:
   project: StyleCopAnalyzers.sln
   verbosity: minimal
-  configuration: Debug
 
 after_build:
 - ps: >-
