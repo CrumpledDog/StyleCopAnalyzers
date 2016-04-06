@@ -15,7 +15,7 @@ assembly_info:
   assembly_informational_version: 1.0.1-alpha-{build}
 
 configuration:
-  - Debug
+  - Release
 
 build:
   project: StyleCopAnalyzers.sln
